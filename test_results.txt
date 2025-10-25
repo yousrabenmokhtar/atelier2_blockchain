@@ -1,0 +1,21 @@
+=== AC_HASH rule comparison (Rule 30,90,110) ===
+Sample input: "The quick brown fox jumps over the lazy dog"
+
+Rule    Avg time (ms)   Deterministic Avg Hamming (bits)  Sample hash
+--------------------------------------------------------------------------------------------------------------
+30      0.780           yes           128.188             c52ba9171ab7a0b649ecd400ef59efc10b045265930c75e4f24a19aea3d61408
+90      0.791           yes           63.953              c31b079a0aa3babc8394849a72ecec8628d66c069073164ca69919cd4647aa7a
+110     0.777           yes           115.148             110370fe702fb1613a142087803c73c09de5f594c43ca8168d701cab06458125
+
+Notes:
+- Hamming is measured in absolute bits (out of 256). 256 bits -> 100% difference.
+- Deterministic must be 'yes' for cryptographic reproducibility.
+
+Recommendation: rule 30 seems most suitable according to this simple test (balance of avalanche closeness and speed).
+
+Detailed outputs (sample hashes):
+Rule 30 -> hash: c52ba9171ab7a0b649ecd400ef59efc10b045265930c75e4f24a19aea3d61408 | avg_time=0.780ms | avg_hamming=128.188
+Rule 90 -> hash: c31b079a0aa3babc8394849a72ecec8628d66c069073164ca69919cd4647aa7a | avg_time=0.791ms | avg_hamming=63.953
+Rule 110 -> hash: 110370fe702fb1613a142087803c73c09de5f594c43ca8168d701cab06458125 | avg_time=0.777ms | avg_hamming=115.148
+
+Done.
